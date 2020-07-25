@@ -6,4 +6,5 @@ class Player(models.Model):
     playerName = models.CharField(max_length=150)
 
 class Teams(models.Model):
-    player = models.ForeignKey(Player, on_delete = models.CASCADE)
+
+    player = models.ForeignKey('Player', on_delete = models.CASCADE)
