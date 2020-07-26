@@ -7,7 +7,8 @@ urlpatterns = [
     #path("list/", include("nba_app.urls")),
     #the path below is for insert and update operations
     path('<int:id>/', views.player_form, name = "player_update"), #get and post request for update operation
-    path('list/', views.player_list, name = "player_list" ), #get request to retrieve and display all record
+    path("delete/<int:id>/", views.delete_from_list, name = 'list_delete'),
+    path('list/', views.player_list, name = "player_list" ), #get display all record
     path('', views.index, name='index'),
     #from Gio's tutorial
 

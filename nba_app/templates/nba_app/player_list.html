@@ -24,6 +24,14 @@
                   <a href = "{% url 'player_update' player.player_id %}" class = "btn text-secondary px-0">
                       <i class = "far fa-edit fa-lg"></i>
                     </a>
+                    <form action = "{% url 'list_delete' player.player_id %}" method = "post" class ="d-inline">
+                      {% csrf_token %}
+                      <button type = "submit" class = "btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+
+                      </button>
+
+                    </form>
               </td>
           </tr>
           {% endfor %}

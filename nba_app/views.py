@@ -32,6 +32,13 @@ def player_form(request, id=0):
             form.save()
         return redirect("/nba_app/list")
 
+
+def delete_from_list(request, id ):
+    player = Player.objects.get(pk = id)
+    player.delete()
+    return redirect("/nba_app/list") 
+
+
 from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world. You're at the CS411 project.")
