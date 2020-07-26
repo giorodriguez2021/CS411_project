@@ -1,3 +1,7 @@
+
+-- IGNORE THIS FILE
+
+/*
 DROP TABLE IF EXISTS Player,Team,OnTeam,Game,PlayerStats;
 CREATE TABLE Player(
     PlayerID INT NOT NULL,
@@ -47,14 +51,14 @@ CREATE TABLE PlayerStats(
 );
 
 INSERT INTO Player VALUES
-    (0, 'A'),
+    (0, 'Aa'),
     (1, 'B'),
     (2, 'C'),
     (3, 'D');
 
 INSERT INTO Team VALUES
-    (0,'Team0','Conf0'),
-    (1,'Team1','Conf1');
+    (0,'Good Team'),
+    (1,'Bad Team');
 
 INSERT INTO OnTeam VALUES
     (0,0),
@@ -67,3 +71,4 @@ INSERT INTO Game VALUES
 
 INSERT INTO PlayerStats VALUES
     (0,1,2,3,4,5);
+*/
