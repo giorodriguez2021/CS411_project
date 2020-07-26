@@ -11,7 +11,7 @@ cursor.execute(sqlcode)"""
 class Player(models.Model):
     player_id = models.IntegerField(default=0, primary_key = True)
     playername = models.CharField(max_length=150)
-
+#needed for drop down menu
     def __str__(self):
         return self.playername
 

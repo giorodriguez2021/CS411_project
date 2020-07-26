@@ -1,11 +1,23 @@
 from django.shortcuts import render
 from django.db import connection
+from .forms import PlayerForm
 import random
 
 # Create your views here.
 from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world. You're at the CS411 project.")
+
+
+#front end functions below
+def player_list(request):
+    return render(request,"nba_app/player_list.html")
+
+def player_form(request):
+    form = PlayerForm()
+    return render(request,"nba_app/player_form.html",{'form':form})
+
+#back end stuff below
 
 def randominsert(request):
     newplayer = "RandomPlayer"+str(random.randint(1,999))

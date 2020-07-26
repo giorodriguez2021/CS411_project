@@ -1,0 +1,18 @@
+{% extends "nba_app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action ="" method="post" autocomplete="off">
+  {%csrf_token%}
+
+  <div class = "row">
+      <div class = "col-md-2">
+        {{form.player_id|as_crispy_field}}
+
+      </div>
+      <div class = "col-md-4"></div>
+      {{form.playername|as_crispy_field}}
+
+    </div>
+</form>
+{% endblock content%}
