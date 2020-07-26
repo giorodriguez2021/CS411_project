@@ -1,21 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import connection
 from .forms import PlayerForm
 import random
+from .models import Player
 
 # Create your views here.
+
+
+#front end functions below
+def player_list(request):
+    context = {'player_list': Player.objects.all()} #replace with raw query in final form
+    return render(request,"nba_app/player_list.html",context)
+
+def player_form(request, id=0):
+    if request.method == "GET":
+        if id == 0: # if id is 0 then it's an insert operation
+            form = PlayerForm()
+        else:
+            player = Player.objects.get(pk = id)
+            form = PlayerForm(instance = player)
+
+        return render(request,"nba_app/player_form.html",{'form':form})
+    else:
+        if id == 0:
+            form = PlayerForm(request.POST)
+        else:
+            player = Player.objects.get(pk = id)
+            form = PlayerForm(request.POST, instance = player)
+
+        if form.is_valid():
+            form.save()
+        return redirect("/nba_app/list")
+
 from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world. You're at the CS411 project.")
 
 
-#front end functions below
-def player_list(request):
-    return render(request,"nba_app/player_list.html")
-
-def player_form(request):
-    form = PlayerForm()
-    return render(request,"nba_app/player_form.html",{'form':form})
 
 #back end stuff below
 

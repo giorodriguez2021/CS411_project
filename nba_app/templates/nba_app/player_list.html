@@ -1,5 +1,32 @@
 {% extends "nba_app/base.html" %}
 
 {% block content %}
-<p> cs411 crud basketball </p>
+<table class = "table table-borderless">
+    <thead class = "border-bottom font-weight-bold">
+        <tr>
+            <td> Player Name </td>
+            <td> Player ID </td>
+            <td>
+               <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
+                   <i class = "fas fa-plus"></i> Add New
+
+               </a>
+            </td>
+
+        </tr>
+      </thead>
+      <tbody>
+          {% for player in player_list %}
+           <tr>
+              <td>{{player.playername}}</td>
+              <td>{{player.player_id}}</td>
+              <td>
+                  <a href = "{% url 'player_update' player.player_id %}" class = "btn text-secondary px-0">
+                      <i class = "far fa-edit fa-lg"></i>
+                    </a>
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+</table>
 {% endblock content%}
