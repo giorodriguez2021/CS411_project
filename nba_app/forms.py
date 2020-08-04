@@ -7,8 +7,15 @@ class PlayerForm(forms.ModelForm):
         fields = '__all__'
         labels = {
             "player_number": "Player ID",
-            "playername" : "Player Name"
+            "playername" : "Player Name",
+            "team" : "Team",
+            "points" : "PTS",
+            "assists" : "AST",
+            "rebounds" : "REB",
+            "blocks" : "BLK",
+            "steals" : "STL"
+
         }
     def __init__(self, *args, **kward):
         super(PlayerForm,self).__init__(*args, **kward)
-        self.fields['playername'].empty_label = "Select"
+        self.fields['team'].empty_label = "Select"
