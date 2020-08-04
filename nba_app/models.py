@@ -16,8 +16,9 @@ class Player(models.Model):
         return self.playername
 
 class Team(models.Model):
-    teamID = models.IntegerField(default = 0, primary_key = True)
+    teamID = models.IntegerField(default = 0, primary_key = True) # possibly delete this
     teamName = models.CharField(max_length=150)
+    #team_player = models.ForeignKey()
 
 class OnTeam(models.Model):
     teamID = models.ForeignKey(Team,on_delete = models.CASCADE)
