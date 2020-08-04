@@ -18,4 +18,9 @@ class PlayerForm(forms.ModelForm):
         }
     def __init__(self, *args, **kward):
         super(PlayerForm,self).__init__(*args, **kward)
+<<<<<<< HEAD
         self.fields['team'].empty_label = "Select"
+=======
+        self.fields['playername'].empty_label = "Select"
+
+>>>>>>> 1a38a86de265b93039f178325d0a05390f9a1fe1

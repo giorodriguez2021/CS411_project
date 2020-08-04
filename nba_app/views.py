@@ -7,8 +7,12 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.db import connection
 from .forms import PlayerForm
 import random
+<<<<<<< HEAD
 from .models import Player
 from .models import Team
+=======
+from .models import Player,Team
+>>>>>>> 1a38a86de265b93039f178325d0a05390f9a1fe1
 # Create your views here.
 #front end functions below
 def player_list(request):
@@ -40,6 +44,29 @@ def team_list(request):
         teams = list(filter(lambda t: search_term in t[1],teams))
     context = {'team_list':teams,'search_term':search_term}
     return render(request,"nba_app/team_list.html",context)
+
+def delete_team(request, id ):
+    team = Team.objects.get(pk = id)
+    team.delete()
+    return redirect("/nba_app/teams")
+def team_form(request, id=0):
+    if request.method == "GET":
+        if id == 0: # if id is 0 then it's an insert operation
+            form = PlayerForm()
+        else:
+            player = Player.objects.get(pk = id)
+            form = PlayerForm(instance = player)
+        return render(request,"nba_app/player_form.html",{'form':form})
+    else:
+        if id == 0:
+            form = PlayerForm(request.POST)
+        else:
+            player = Player.objects.get(pk = id)
+            form = PlayerForm(request.POST, instance = player)
+        if form.is_valid():
+            form.save()
+        return redirect("/nba_app/list")
+
 
 def player_form(request, id=0):
     if request.method == "GET":

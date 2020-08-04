@@ -1,0 +1,50 @@
+{% extends "nba_app/base.html" %}
+{% block content %}
+<div class="search-bar mt-sm-2 mr-2">
+  <form class="form-inline my-2 my-lg-0">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      name = 'search'
+      >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+<script type="text/javascript">
+  document.getElementById("id_q").value = "{{query}}"
+</script>
+<table class = "table table-borderless">
+    <thead class = "border-bottom font-weight-bold">
+        <tr>
+            <td>Team ID</td>
+            <td>Team Name</td>
+            <td>Total Points</td>
+            <td>Total Assists</td>
+            <td>Total Rebounds</td>
+            <td>Total Blocks</td>
+            <td>Total Steals</td>
+            <td>
+               <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
+                   <i class = "fas fa-plus"></i> Add New (TODO)
+               </a>
+            </td>
+        </tr>
+      </thead>
+      <tbody>
+          {% for team in team_list %}
+           <tr>
+              <td>{{team.0}}</td>
+              <td>{{team.1}}</td>
+              <td>{{team.2}}</td>
+              <td>{{team.3}}</td>
+              <td>{{team.4}}</td>
+              <td>{{team.5}}</td>
+              <td>{{team.6}}</td>
+              
+          </tr>
+          {% endfor %}
+      </tbody>
+</table>
+{% endblock content%}
