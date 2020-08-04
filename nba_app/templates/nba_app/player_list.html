@@ -15,6 +15,13 @@
 <script type="text/javascript">
   document.getElementById("id_q").value = "{{query}}"
 </script>
+<div class = "row">
+    <div class = "col-md-3 mt-sm-2 mr-2">
+      <a href = "{% url 'team_list' %}" class = "btn btn-secondary btn-block btn-lg">
+          <i class = "fas fa-stream"></i> Team List
+      </a>
+    </div>
+</div>
 <table class = "table table-borderless">
     <thead class = "border-bottom font-weight-bold">
         <tr>
@@ -26,6 +33,7 @@
             <td> REB </td>
             <td> BLK </td>
             <td> STL </td>
+            <td> GP </td>
             <td>
                <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
                    <i class = "fas fa-plus"></i> Add New
@@ -44,6 +52,7 @@
               <td>{{player.rebounds}}</td>
               <td>{{player.blocks}}</td>
               <td>{{player.steals}}</td>
+              <td>{{player.games_played}}</td>
               <td>
                   <a href = "{% url 'player_update' player.player_id %}" class = "btn text-secondary px-0">
                       <i class = "far fa-edit fa-lg"></i>

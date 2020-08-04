@@ -18,6 +18,7 @@ class Player(models.Model):
     rebounds = models.IntegerField(default=0)
     blocks = models.IntegerField(default=0)
     steals = models.IntegerField(default=0)
+    games_played = models.IntegerField(default=0)
 #needed for drop down menu
     def __str__(self):
         return self.playername

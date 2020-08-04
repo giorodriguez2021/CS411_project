@@ -13,7 +13,8 @@ class PlayerForm(forms.ModelForm):
             "assists" : "AST",
             "rebounds" : "REB",
             "blocks" : "BLK",
-            "steals" : "STL"
+            "steals" : "STL",
+            "games_played" :"GP"
 
         }
     def __init__(self, *args, **kward):
@@ -31,4 +32,3 @@ class TeamForm(forms.ModelForm):
     def __init__(self, *args, **kward):
         super(TeamForm,self).__init__(*args,**kward)
         self.fields['teamname'].empty_label = "Select"
-
