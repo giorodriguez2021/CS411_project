@@ -20,6 +20,12 @@
         <tr>
             <td> Player Name </td>
             <td> Player ID </td>
+            <td> Team </td>
+            <td> PTS </td>
+            <td> AST </td>
+            <td> REB </td>
+            <td> BLK </td>
+            <td> STL </td>
             <td>
                <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
                    <i class = "fas fa-plus"></i> Add New
@@ -32,6 +38,12 @@
            <tr>
               <td>{{player.playername}}</td>
               <td>{{player.player_id}}</td>
+              <td>{{player.team}}</td>
+              <td>{{player.points}}</td>
+              <td>{{player.assists}}</td>
+              <td>{{player.rebounds}}</td>
+              <td>{{player.blocks}}</td>
+              <td>{{player.steals}}</td>
               <td>
                   <a href = "{% url 'player_update' player.player_id %}" class = "btn text-secondary px-0">
                       <i class = "far fa-edit fa-lg"></i>

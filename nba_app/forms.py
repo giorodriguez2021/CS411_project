@@ -6,12 +6,20 @@ class PlayerForm(forms.ModelForm):
         model = Player
         fields = '__all__'
         labels = {
-            "player_number": "Player ID",
-            "playername" : "Player Name"
+            "player_id": "Player ID",
+            "playername" : "Player Name",
+            "team" : "Team",
+            "points" : "PTS",
+            "assists" : "AST",
+            "rebounds" : "REB",
+            "blocks" : "BLK",
+            "steals" : "STL"
+
         }
     def __init__(self, *args, **kward):
         super(PlayerForm,self).__init__(*args, **kward)
-        self.fields['playername'].empty_label = "Select"
+        self.fields['team'].empty_label = "Select"
+
 
 class TeamForm(forms.ModelForm):
     class Meta:
@@ -24,3 +32,4 @@ class TeamForm(forms.ModelForm):
     def __init__(self, *args, **kward):
         super(TeamForm,self).__init__(*args,**kward)
         self.fields['teamname'].empty_label = "Select"
+
