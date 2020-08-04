@@ -1,6 +1,20 @@
 {% extends "nba_app/base.html" %}
-
 {% block content %}
+<div class="search-bar mt-sm-2 mr-2">
+  <form class="form-inline my-2 my-lg-0">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      name = 'search'
+      >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+<script type="text/javascript">
+  document.getElementById("id_q").value = "{{query}}"
+</script>
 <table class = "table table-borderless">
     <thead class = "border-bottom font-weight-bold">
         <tr>
@@ -9,10 +23,8 @@
             <td>
                <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
                    <i class = "fas fa-plus"></i> Add New
-
                </a>
             </td>
-
         </tr>
       </thead>
       <tbody>
@@ -28,9 +40,7 @@
                       {% csrf_token %}
                       <button type = "submit" class = "btn">
                         <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
-
                       </button>
-
                     </form>
               </td>
           </tr>
