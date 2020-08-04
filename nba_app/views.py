@@ -24,6 +24,22 @@ def player_list(request):
     context = {'player_list': players, 'search_term': search_term} #replace with raw query in final form
     return render(request,"nba_app/player_list.html",context)
 
+TEAM_SQL = """SELECT team_id,teamname,sum(points),sum(assists),sum(rebounds),sum(blocks),sum(steals)
+FROM nba_app_Team NATURAL JOIN nba_app_Player
+GROUP BY team_id;"""
+
+def team_list(request):
+    tsql = TEAM_SQL
+    cur = connection.cursor()
+    cur.execute(TEAM_SQL)
+    teams = cur.fetchall()
+    search_term = ''
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        teams = list(filter(lambda t: search_term in t[1],teams))
+    context = {'team_list':teams,'search_term':search_term}
+    return render(request,"nba_app/team_list.html",context)
+
 def player_form(request, id=0):
     if request.method == "GET":
         if id == 0: # if id is 0 then it's an insert operation
