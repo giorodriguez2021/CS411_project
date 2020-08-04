@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db import connection
-from .forms import PlayerForm
+from .forms import PlayerForm,TeamForm
 import random
 from .models import Player,Team
 # Create your views here.
@@ -24,10 +24,10 @@ def player_list(request):
     context = {'player_list': players, 'search_term': search_term} #replace with raw query in final form
     return render(request,"nba_app/player_list.html",context)
 
-TEAM_SQL = """SELECT team_id,teamname,sum(points),sum(assists),sum(rebounds),sum(blocks),sum(steals)
-FROM nba_app_Team NATURAL JOIN nba_app_Player
-GROUP BY team_id;"""
-
+TEAM_SQL = """SELECT nba_app_Team.team_id,teamname,count(player_id),sum(points),sum(assists),sum(rebounds),sum(blocks),sum(steals)
+FROM nba_app_Team LEFT OUTER JOIN nba_app_Player ON nba_app_Team.team_id=nba_app_Player.team_id
+GROUP BY nba_app_Team.team_id;"""
+"a"
 def team_list(request):
     tsql = TEAM_SQL
     cur = connection.cursor()
@@ -40,27 +40,28 @@ def team_list(request):
     context = {'team_list':teams,'search_term':search_term}
     return render(request,"nba_app/team_list.html",context)
 
-def delete_team(request, id ):
+def team_delete(request, id ):
     team = Team.objects.get(pk = id)
     team.delete()
     return redirect("/nba_app/teams")
+
 def team_form(request, id=0):
     if request.method == "GET":
         if id == 0: # if id is 0 then it's an insert operation
-            form = PlayerForm()
+            form = TeamForm()
         else:
-            player = Player.objects.get(pk = id)
-            form = PlayerForm(instance = player)
-        return render(request,"nba_app/player_form.html",{'form':form})
+            team = Team.objects.get(pk = id)
+            form = TeamForm(instance = team)
+        return render(request,"nba_app/team_form.html",{'form':form})
     else:
         if id == 0:
-            form = PlayerForm(request.POST)
+            form = TeamForm(request.POST)
         else:
-            player = Player.objects.get(pk = id)
-            form = PlayerForm(request.POST, instance = player)
+            team = Team.objects.get(pk = id)
+            form = TeamForm(request.POST, instance = team)
         if form.is_valid():
             form.save()
-        return redirect("/nba_app/list")
+        return redirect("/nba_app/teams")
 
 
 def player_form(request, id=0):

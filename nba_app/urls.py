@@ -21,5 +21,7 @@ urlpatterns = [
     #path('player_delete', views.player_delete, name='player_delete')
     #these paths caused a bug
     path('teams',views.team_list,name='team_list'),
-    path('teamsform',views.team_form,name="teamsform")
+    path('teams/form/',views.team_form,name="team_insert"),
+    path('teams/form/<int:id>',views.team_form,name='team_update'),
+    path('teams/delete/<int:id>',views.team_delete,name='team_delete')
 ]

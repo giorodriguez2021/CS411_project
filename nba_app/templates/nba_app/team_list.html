@@ -20,14 +20,15 @@
         <tr>
             <td>Team ID</td>
             <td>Team Name</td>
+            <td># Players</td>
             <td>Total Points</td>
             <td>Total Assists</td>
             <td>Total Rebounds</td>
             <td>Total Blocks</td>
             <td>Total Steals</td>
             <td>
-               <a href = "{% url 'player_insert' %}" class="btn btn-outline-success">
-                   <i class = "fas fa-plus"></i> Add New (TODO)
+               <a href = "{% url 'team_insert' %}" class="btn btn-outline-success">
+                   <i class = "fas fa-plus"></i> Add New
                </a>
             </td>
         </tr>
@@ -42,7 +43,18 @@
               <td>{{team.4}}</td>
               <td>{{team.5}}</td>
               <td>{{team.6}}</td>
-              
+              <td>{{team.7}}</td>
+              <td>
+                  <a href = "{% url 'team_update' team.0 %}" class = "btn text-secondary px-0">
+                      <i class = "far fa-edit fa-lg"></i>
+                    </a>
+                    <form action = "{% url 'team_delete' team.0 %}" method = "post" class ="d-inline">
+                      {% csrf_token %}
+                      <button type = "submit" class = "btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                      </button>
+                    </form>
+              </td>
           </tr>
           {% endfor %}
       </tbody>
