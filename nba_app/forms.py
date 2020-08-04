@@ -12,3 +12,4 @@ class PlayerForm(forms.ModelForm):
     def __init__(self, *args, **kward):
         super(PlayerForm,self).__init__(*args, **kward)
         self.fields['playername'].empty_label = "Select"
+

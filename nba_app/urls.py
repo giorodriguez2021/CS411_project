@@ -20,5 +20,6 @@ urlpatterns = [
     #path('player_select', views.player_select, name='player_select'),
     #path('player_delete', views.player_delete, name='player_delete')
     #these paths caused a bug
-    path('teams',views.team_list,name='team_list')
+    path('teams',views.team_list,name='team_list'),
+    path('teamsform',views.team_form,name="teamsform")
 ]
