@@ -20,7 +20,6 @@ class PlayerForm(forms.ModelForm):
         super(PlayerForm,self).__init__(*args, **kward)
         self.fields['team'].empty_label = "Select"
 
-
 class TeamForm(forms.ModelForm):
     class Meta:
         model = Team

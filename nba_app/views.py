@@ -7,8 +7,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.db import connection
 from .forms import PlayerForm,TeamForm
 import random
-from .models import Player
-from .models import Team
+from .models import Player,Team
 # Create your views here.
 #front end functions below
 def player_list(request):
