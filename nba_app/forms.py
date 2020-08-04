@@ -6,7 +6,7 @@ class PlayerForm(forms.ModelForm):
         model = Player
         fields = '__all__'
         labels = {
-            "player_number": "Player ID",
+            "player_id": "Player ID",
             "playername" : "Player Name",
             "team" : "Team",
             "points" : "PTS",

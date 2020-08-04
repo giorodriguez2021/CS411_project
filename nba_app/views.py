@@ -8,6 +8,7 @@ from django.db import connection
 from .forms import PlayerForm
 import random
 from .models import Player
+from .models import Team
 # Create your views here.
 #front end functions below
 def player_list(request):
@@ -57,6 +58,7 @@ def player_form(request, id=0):
         if form.is_valid():
             form.save()
         return redirect("/nba_app/list")
+
 def delete_from_list(request, id ):
     player = Player.objects.get(pk = id)
     player.delete()
