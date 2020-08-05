@@ -191,4 +191,8 @@ def player_delete(request):
     cur.execute("DELETE FROM nba_app_Player WHERE player_id=%d" % pid)
     return HttpResponse("Deleted!")
 
-#def import_csv(request):
+def recommended_list(request):
+    cur = connection.cursor()
+    cur.execute(open('advancedquery.sql').read())
+    players = cur.fetchall()
+    return render(request,"nba_app/recommended_list.html")

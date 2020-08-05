@@ -12,6 +12,40 @@
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
 </div>
+
+<div class="container">
+  <form action = "" class="form-inline" method = "GET">
+    <div class="form-group  col-lg-8">
+      <input name="input1" placeholder="PTS" class="form-control" required>
+    </div>
+
+    <div class="form-group col-lg-8">
+      <input name="input2" type="number" placeholder="AST" class="form-control" step="any" required>
+    </div>
+
+    <div class="form-group col-lg-8">
+      <input name="input3" type="number" placeholder="REB" class="form-control" step="any" required>
+    </div>
+
+    <div class="form-group col-lg-8">
+      <input name="input4" type="number" placeholder="BLK" class="form-control" step="any" required>
+    </div>
+    <div class="form-group col-lg-8">
+      <input name="input5" type="number" placeholder="STL" class="form-control" required>
+    </div>
+
+    <div class="form-group  col-lg-8">
+      <input name="input6" type="number" placeholder="GP" class="form-control" step="any">
+
+    <div class="col-xs-8 col-lg-8">
+      <a href = "{% url 'recommended_list' %}" class = "btn btn-secondary btn-block btn-lg">
+        <button type="button" class="btn btn-primary">Find Recommended Player(s)</button>
+      </a>
+    </div>
+  </form>
+</div>
+
+
 <script type="text/javascript">
   document.getElementById("id_q").value = "{{query}}"
 </script>

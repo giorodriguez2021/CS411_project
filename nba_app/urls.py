@@ -23,5 +23,6 @@ urlpatterns = [
     path('teams',views.team_list,name='team_list'),
     path('teams/form/',views.team_form,name="team_insert"),
     path('teams/form/<int:id>',views.team_form,name='team_update'),
-    path('teams/delete/<int:id>',views.team_delete,name='team_delete')
+    path('teams/delete/<int:id>',views.team_delete,name='team_delete'),
+    path('recommended',views.recommended_list, name = 'recommended_list')
 ]
