@@ -16,38 +16,42 @@
 <div class="container">
   <form action = "" class="form-inline" >
     <div class="form-group  col-lg-8">
-      <input name="input1" placeholder="PTS" class="form-control" required>
+      <input id="pts" name="input1" type="number" placeholder="pts" class="form-control">
     </div>
-
-    <div class="form-group col-lg-8">
-      <input name="input2" type="number" placeholder="AST" class="form-control" step="any" required>
-    </div>
-
-    <div class="form-group col-lg-8">
-      <input name="input3" type="number" placeholder="REB" class="form-control" step="any" required>
-    </div>
-
-    <div class="form-group col-lg-8">
-      <input name="input4" type="number" placeholder="BLK" class="form-control" step="any" required>
-    </div>
-    <div class="form-group col-lg-8">
-      <input name="input5" type="number" placeholder="STL" class="form-control" required>
-    </div>
-
     <div class="form-group  col-lg-8">
-      <input name="input6" type="number" placeholder="GP" class="form-control" step="any">
-
+      <input id="ast" name="input1" type="number" placeholder="ast" class="form-control">
+    </div>
+    <div class="form-group  col-lg-8">
+      <input id="reb" name="input1" type="number" placeholder="reb" class="form-control">
+    </div>
+    <div class="form-group  col-lg-8">
+      <input id="blk" name="input1" type="number" placeholder="blk" class="form-control">
+    </div>
+    <div class="form-group  col-lg-8">
+      <input id="stl" name="input1" type="number" placeholder="stl" class="form-control">
+    </div>
+    <div class="form-group  col-lg-8">
+      <input id="gp" name="input1" type="number" placeholder="gp" class="form-control">
+    </div>
     <div class="col-xs-8 col-lg-8">
-      <a href = "{% url 'recommended_list' %}" class = "btn btn-secondary btn-block btn-lg">
-        <button type="button" class="btn btn-primary">Find Recommended Player(s)</button>
-      </a>
+        <button type="button" class="btn btn-primary" id="recs">Find Recommended Player(s)</button>
     </div>
   </form>
 </div>
 
 
 <script type="text/javascript">
-  document.getElementById("id_q").value = "{{query}}"
+document.getElementById("recs").onclick = function() {
+    let nloc = "/nba_app/recommended?";
+    let fields = ["pts","ast","reb","blk","stl","gp"];
+    let params = [];
+    for (let i=0;i<6;i++) {
+        let s = document.getElementById(fields[i]).value;
+        if (s) params.push(fields[i]+"="+s);
+    }
+    nloc += params.join("&");
+    location.replace(nloc);
+}
 </script>
 <div class = "row">
     <div class = "col-md-3 mt-sm-2 mr-2">
