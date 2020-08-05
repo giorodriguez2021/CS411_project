@@ -194,5 +194,7 @@ def player_delete(request):
 def recommended_list(request):
     cur = connection.cursor()
     cur.execute(open('advancedquery.sql').read())
+
+    context = {'recommended_list',}
     players = cur.fetchall()
     return render(request,"nba_app/recommended_list.html")
