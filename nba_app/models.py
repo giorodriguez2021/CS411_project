@@ -12,7 +12,7 @@ class Team(models.Model):
 class Player(models.Model):
     player_id = models.IntegerField(default=0, primary_key = True)
     playername = models.CharField(max_length=150)
-    team = models.ForeignKey(Team,on_delete = models.CASCADE)
+    team = models.ForeignKey(Team,related_name='player' ,on_delete = models.CASCADE)
     points = models.IntegerField(default=0)
     assists = models.IntegerField(default=0)
     rebounds = models.IntegerField(default=0)
@@ -23,8 +23,9 @@ class Player(models.Model):
     def __str__(self):
         return self.playername
 
-class Game(models.Model):
+"""class Game(models.Model):
     team1 = models.ForeignKey(Team,on_delete = models.CASCADE, related_name = "team1")
     team2 = models.ForeignKey(Team,on_delete = models.CASCADE, related_name = "team2")
     score1 = models.IntegerField(default=0)
     score2 = models.IntegerField(default=0)
+"""

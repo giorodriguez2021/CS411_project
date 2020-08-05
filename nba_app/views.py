@@ -8,15 +8,47 @@ from django.db import connection
 from .forms import PlayerForm,TeamForm
 import random
 from .models import Player,Team
+import csv
 # Create your views here.
 #front end functions below
+
+#populates the teams table
+team_dict = {}
+with open("nba_app/teams_import.csv", encoding='utf-8-sig') as f:
+    reader = csv.reader(f)
+    next(reader,None) #skip the headers
+    for row in reader:
+        _, created = Team.objects.get_or_create(
+        team_id = row[0],
+        teamname = row[1],
+        )
+        team_dict[row[1]] = row[0]
+
+
+with open("nba_app/to_import.csv", encoding='utf-8-sig') as f:
+    reader = csv.reader(f)
+    next(reader,None) #skip the headers
+    for row in reader:
+        _, created = Player.objects.get_or_create(
+        player_id = row[0],
+        playername = row[1],
+        team = Team.objects.get(teamname = (row[2])),
+        points = row[3],
+        assists = row[4],
+        rebounds = row[5],
+        blocks = row[6],
+        steals = row[7],
+        games_played = row[8],
+        )
+
+
 def player_list(request):
     players = Player.objects.all()
     search_term = ''
     if 'search' in request.GET:
         search_term = request.GET['search']
         players = players.filter(playername__icontains=search_term)
-    paginator = Paginator(players, 10)
+    paginator = Paginator(players, 100)
     page = request.GET.get('page')
     players = paginator.get_page(page)
     get_dict_copy = request.GET.copy()
@@ -157,3 +189,5 @@ def player_delete(request):
         return HttpResponse("Player not found...")
     cur.execute("DELETE FROM nba_app_Player WHERE player_id=%d" % pid)
     return HttpResponse("Deleted!")
+
+#def import_csv(request):
