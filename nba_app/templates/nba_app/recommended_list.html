@@ -13,34 +13,31 @@
 <table class = "table table-borderless">
     <thead class = "border-bottom font-weight-bold">
         <tr>
-          <td> Player Name </td>
-          <td> Player ID </td>
-          <td> Team </td>
+          <td>Player ID</td>
+          <td>Player Name</td>
+          <td>Team Name</td>
           <td> PTS </td>
           <td> AST </td>
           <td> REB </td>
           <td> BLK </td>
           <td> STL </td>
           <td> GP </td>
-          <td> </td>
+          <td> Euclidean Distance</td>
         </tr>
       </thead>
       <tbody>
-          {% for team in team_list %}
+          {% for p in player_list %}
            <tr>
-             <td>{{player.playername}}</td>
-             <td>{{player.player_id}}</td>
-             <td>{{player.team}}</td>
-             <td>{{player.points}}</td>
-             <td>{{player.assists}}</td>
-             <td>{{player.rebounds}}</td>
-             <td>{{player.blocks}}</td>
-             <td>{{player.steals}}</td>
-             <td>{{player.games_played}}</td>
-             <td>
-
-
-           </td>
+            <td>{{p.0}}</td>
+            <td>{{p.1}}</td>
+            <td>{{p.2}}</td>
+            <td>{{p.3}}</td>
+            <td>{{p.4}}</td>
+            <td>{{p.5}}</td>
+            <td>{{p.6}}</td>
+            <td>{{p.7}}</td>
+            <td>{{p.8}}</td>
+            <td>{{p.9}}</td>
        </tr>
        {% endfor %}
    </tbody>
