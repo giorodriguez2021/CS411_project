@@ -1,0 +1,54 @@
+{% extends "nba_app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class = "row">
+    <div class = "col-md-3 mt-sm-2 mr-2">
+      <a href = "{% url 'player_list' %}" class = "btn btn-secondary btn-block btn-lg">
+          <i class = "fas fa-stream"></i> Player List
+      </a>
+    </div>
+  </div>
+<table class = "table table-borderless">
+    <thead class = "border-bottom font-weight-bold">
+        <tr>
+          <td> Player Name </td>
+          <td> Player ID </td>
+          <td> Team </td>
+          <td> PTS </td>
+          <td> AST </td>
+          <td> REB </td>
+          <td> BLK </td>
+          <td> STL </td>
+          <td> GP </td>
+          <td> </td>
+        </tr>
+      </thead>
+      <tbody>
+          {% for team in team_list %}
+           <tr>
+             <td>{{player.playername}}</td>
+             <td>{{player.player_id}}</td>
+             <td>{{player.team}}</td>
+             <td>{{player.points}}</td>
+             <td>{{player.assists}}</td>
+             <td>{{player.rebounds}}</td>
+             <td>{{player.blocks}}</td>
+             <td>{{player.steals}}</td>
+             <td>{{player.games_played}}</td>
+             <td>
+
+
+           </td>
+       </tr>
+       {% endfor %}
+   </tbody>
+</table>
+</table>
+
+
+
+
+
+{% endblock content%}
