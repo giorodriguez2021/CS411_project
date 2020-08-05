@@ -9,6 +9,7 @@ from .forms import PlayerForm,TeamForm
 import random
 from .models import Player,Team
 import csv
+
 # Create your views here.
 #front end functions below
 
