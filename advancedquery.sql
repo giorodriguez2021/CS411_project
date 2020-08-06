@@ -44,12 +44,12 @@ AS $$
             SELECT avg(blk) INTO avg_blk FROM Player;
             SELECT avg(stl) INTO avg_stl FROM Player;
             SELECT avg(gp) INTO avg_gp FROM Player;
-            SELECT sqrt(sum((pts-avg_pts)^2)/count(pts)) INTO avg_pts FROM Player;
-            SELECT sqrt(sum((ast-avg_ast)^2)/count(ast)) INTO avg_ast FROM Player;
-            SELECT sqrt(sum((reb-avg_reb)^2)/count(reb)) INTO avg_reb FROM Player;
-            SELECT sqrt(sum((blk-avg_blk)^2)/count(blk)) INTO avg_blk FROM Player;
-            SELECT sqrt(sum((stl-avg_stl)^2)/count(stl)) INTO avg_stl FROM Player;
-            SELECT sqrt(sum((gp-avg_gp)^2)/count(gp)) INTO avg_gp FROM Player;
+            SELECT sqrt(sum((pts-avg_pts)^2)/count(pts)) INTO sd_pts FROM Player;
+            SELECT sqrt(sum((ast-avg_ast)^2)/count(ast)) INTO sd_ast FROM Player;
+            SELECT sqrt(sum((reb-avg_reb)^2)/count(reb)) INTO sd_reb FROM Player;
+            SELECT sqrt(sum((blk-avg_blk)^2)/count(blk)) INTO sd_blk FROM Player;
+            SELECT sqrt(sum((stl-avg_stl)^2)/count(stl)) INTO sd_stl FROM Player;
+            SELECT sqrt(sum((gp-avg_gp)^2)/count(gp)) INTO sd_gp FROM Player;
         END IF;
         IF x_pts IS NULL THEN
             mul_pts := 0;

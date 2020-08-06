@@ -75,7 +75,7 @@ AS $$
             mul_gp := 0;
             x_gp := 0;
         END IF;
-        RETURN QUERY SELECT player_id,playername,'"'+teamname'"',pts,ast,reb,blk,stl,gp,CAST (sqrt(mul_pts*((x_pts-pts)/sd_pts)^2+mul_ast*((x_ast-ast)/sd_ast)^2+mul_reb*((x_reb-reb)/sd_reb)^2+mul_blk*((x_blk-blk)/sd_blk)^2+mul_stl*((x_stl-stl)/sd_stl)^2+mul_gp*((x_gp-gp)/sd_gp)^2) AS real) AS edist
+        RETURN QUERY SELECT player_id,playername,cast(concat('"',teamname,'"') as varchar(150)),pts,ast,reb,blk,stl,gp,CAST (sqrt(mul_pts*((x_pts-pts)/sd_pts)^2+mul_ast*((x_ast-ast)/sd_ast)^2+mul_reb*((x_reb-reb)/sd_reb)^2+mul_blk*((x_blk-blk)/sd_blk)^2+mul_stl*((x_stl-stl)/sd_stl)^2+mul_gp*((x_gp-gp)/sd_gp)^2) AS real) AS edist
         FROM Player NATURAL JOIN nba_app_Team ORDER BY edist;
     END;
 $$
