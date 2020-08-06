@@ -193,20 +193,12 @@ def player_delete(request):
 
 def recommended_list(request):
     cur = connection.cursor()
-<<<<<<< HEAD
-    cur.execute(open('advancedquery.sql').read())
-
-    context = {'recommended_list',}
-    players = cur.fetchall()
-    return render(request,"nba_app/recommended_list.html")
-=======
     cur.execute(open('advancedquery.sql','r').read())
     fields = ["pts","ast","reb","blk","stl","gp"]
     inserts = tuple([request.GET.get(f,"NULL") for f in fields])
-    rsql = "SELECT * FROM (SELECT test(%s,%s,%s,%s,%s,%s,False)) AS R LIMIT 100" % inserts
+    rsql = "SELECT * FROM (SELECT test(%s,%s,%s,%s,%s,%s,True)) AS R LIMIT 100" % inserts
     cur.execute(rsql)
     r = cur.fetchall()
-    print(r)
     res = list(map(lambda x: eval(x[0]),r))
     return render(request,"nba_app/recommended_list.html",{"player_list":res})
->>>>>>> 060a66f4632e932b521936a271ce8e71207b4257
+
